@@ -1,0 +1,32 @@
+<?php 
+    include('head.php'); 
+    include('menu.php');
+    $opMenu = $_GET['op'];
+    if ($opMenu == null):
+        $opMenu = 0;
+    endif;
+
+    switch($opMenu){
+        case 0: 
+            include('intro.php');
+            break;
+        case 1:
+            include('addSong.php');
+            break;
+        case 2:
+            include('removeSong.php');
+            break;
+        case 3:
+            include('addAlarm.php');
+            break;
+        case 4:
+            include('editAlarm.php');
+            break;
+        case 5:
+            include('deleteAlarm.php');
+            break;
+    }
+
+?>
+    </body>
+</html>
