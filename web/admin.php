@@ -20,10 +20,7 @@
             include('addAlarm.php');
             break;
         case 4:
-            include('editAlarm.php');
-            break;
-        case 5:
-            include('deleteAlarm.php');
+            include('listAlarms.php');
             break;
     }
 

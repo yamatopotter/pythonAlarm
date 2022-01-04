@@ -1,6 +1,6 @@
 <h2>Adicionar novo Alarme</h2>
 
-<form action="includeAlarm.php" method="post">
+<form action="actionAddAlarm.php" method="post">
     <label for="nome">
         Nome do Alarm
     </label>

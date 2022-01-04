@@ -1,5 +1,5 @@
 <h2>Adicionar nova música</a>
-<form action="uploadSong.php" method="post" enctype="multipart/form-data">
+<form action="actionAddSong.php" method="post" enctype="multipart/form-data">
     <label for="newSong">
         Adicionar nova música
     </label>
