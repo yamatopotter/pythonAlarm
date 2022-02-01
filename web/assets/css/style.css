@@ -1,0 +1,59 @@
+.btn {
+  border: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 15px 30px;
+  background-color: #93faa5;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.btn:hover {
+  background-color: #03c9a9;
+}
+
+.input-text {
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  border-color: 1px solid #0a0a0a;
+}
+
+body {
+  background-color: #d2d7d3;
+}
+
+.login-form {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.login-form .logo {
+  width: 80px;
+}
+
+.login-form .card {
+  max-width: 320px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 12px -3px #000000;
+          box-shadow: 0px 0px 12px -3px #000000;
+}
+
+.login-form .card .btn {
+  margin: 0 auto;
+  display: block;
+}
+/*# sourceMappingURL=style.css.map */
