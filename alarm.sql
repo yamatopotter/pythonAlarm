@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 02, 2022 at 02:11 AM
--- Server version: 8.0.27
+-- Generation Time: Feb 02, 2022 at 08:25 PM
+-- Server version: 8.0.28
 -- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -31,15 +31,28 @@ CREATE TABLE `Alarm` (
   `alarmID` int NOT NULL,
   `userID` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `startTime` time NOT NULL
+  `startTime` time NOT NULL,
+  `AlarmeAreaID` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `Alarm`
 --
 
-INSERT INTO `Alarm` (`alarmID`, `userID`, `name`, `startTime`) VALUES
-(2, 1, 'Alarme Padrão', '10:05:00');
+INSERT INTO `Alarm` (`alarmID`, `userID`, `name`, `startTime`, `AlarmeAreaID`) VALUES
+(2, 1, 'Alarme Padrão', '10:05:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `AlarmArea`
+--
+
+CREATE TABLE `AlarmArea` (
+  `ID` int NOT NULL,
+  `Nome` varchar(15) NOT NULL,
+  `GPIO_PORT` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -70,14 +83,14 @@ INSERT INTO `AlarmSong` (`alarmSongID`, `songID`, `alarmID`, `songTime`, `fadein
 -- (See below for the actual view)
 --
 CREATE TABLE `listSongs` (
-`songID` int
-,`alarmID` int
+`alarmID` int
 ,`alarmName` varchar(50)
-,`path` varchar(300)
-,`songName` varchar(50)
-,`songTime` int
 ,`fadeinTime` int
 ,`fadeoutTime` int
+,`path` varchar(300)
+,`songID` int
+,`songName` varchar(50)
+,`songTime` int
 ,`startTime` time
 );
 
@@ -98,7 +111,9 @@ CREATE TABLE `Song` (
 --
 
 INSERT INTO `Song` (`songID`, `name`, `path`) VALUES
-(1, 'test.mp3', 'songs/test.mp3');
+(1, 'test.mp3', 'songs/test.mp3'),
+(2, 'test.mp3', 'songs/test.mp3'),
+(3, 'test.mp3', 'songs/test.mp3');
 
 -- --------------------------------------------------------
 
@@ -140,6 +155,12 @@ ALTER TABLE `Alarm`
   ADD PRIMARY KEY (`alarmID`);
 
 --
+-- Indexes for table `AlarmArea`
+--
+ALTER TABLE `AlarmArea`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `AlarmSong`
 --
 ALTER TABLE `AlarmSong`
@@ -168,6 +189,12 @@ ALTER TABLE `Alarm`
   MODIFY `alarmID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `AlarmArea`
+--
+ALTER TABLE `AlarmArea`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `AlarmSong`
 --
 ALTER TABLE `AlarmSong`
@@ -177,7 +204,7 @@ ALTER TABLE `AlarmSong`
 -- AUTO_INCREMENT for table `Song`
 --
 ALTER TABLE `Song`
-  MODIFY `songID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `songID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `User`
