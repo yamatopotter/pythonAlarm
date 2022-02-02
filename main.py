@@ -1,6 +1,6 @@
 from pydub import AudioSegment
 from pydub.playback import play
-# import mysql.connector
+import mysql.connector
 import datetime
 
 # mydb = 0
