@@ -12,7 +12,7 @@
                         Senha
                     </label>
                     <input type="password" name="password" class="input-text">
-                    <input type="submit" value="Login" class="btn">
+                    <input type="submit" value="Login" class="btn btn-success">
                 </form>
             </div>        
         </section>
