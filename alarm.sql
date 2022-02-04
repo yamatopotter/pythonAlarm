@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 02, 2022 at 08:25 PM
--- Server version: 8.0.28
+-- Generation Time: Feb 04, 2022 at 03:34 AM
+-- Server version: 8.0.27
 -- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -40,7 +40,7 @@ CREATE TABLE `Alarm` (
 --
 
 INSERT INTO `Alarm` (`alarmID`, `userID`, `name`, `startTime`, `AlarmeAreaID`) VALUES
-(2, 1, 'Alarme Padrão', '10:05:00', 0);
+(2, 1, 'Alarme Padrão', '10:05:00', 1);
 
 -- --------------------------------------------------------
 
@@ -53,6 +53,13 @@ CREATE TABLE `AlarmArea` (
   `Nome` varchar(15) NOT NULL,
   `GPIO_PORT` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `AlarmArea`
+--
+
+INSERT INTO `AlarmArea` (`ID`, `Nome`, `GPIO_PORT`) VALUES
+(1, 'Área Comum', 8);
 
 -- --------------------------------------------------------
 
@@ -75,6 +82,23 @@ CREATE TABLE `AlarmSong` (
 
 INSERT INTO `AlarmSong` (`alarmSongID`, `songID`, `alarmID`, `songTime`, `fadeinTime`, `fadeoutTime`) VALUES
 (1, 1, 2, 30, 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `listAlarm`
+-- (See below for the actual view)
+--
+CREATE TABLE `listAlarm` (
+`area` int
+,`fadeIn` int
+,`fadeout` int
+,`horaDoAlarme` time
+,`nomeAlarme` varchar(50)
+,`path` varchar(300)
+,`porta` int
+,`tempoMusica` int
+);
 
 -- --------------------------------------------------------
 
@@ -138,6 +162,15 @@ INSERT INTO `User` (`userID`, `user`, `password`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure for view `listAlarm`
+--
+DROP TABLE IF EXISTS `listAlarm`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `listAlarm`  AS SELECT `a`.`name` AS `nomeAlarme`, `a`.`startTime` AS `horaDoAlarme`, `a`.`AlarmeAreaID` AS `area`, `aa`.`GPIO_PORT` AS `porta`, `also`.`songTime` AS `tempoMusica`, `also`.`fadeinTime` AS `fadeIn`, `also`.`fadeoutTime` AS `fadeout`, `s`.`path` AS `path` FROM (((`Alarm` `a` join `AlarmArea` `aa` on((`aa`.`ID` = `a`.`AlarmeAreaID`))) join `AlarmSong` `also` on((`also`.`alarmID` = `a`.`alarmID`))) join `Song` `s` on((`s`.`songID` = `also`.`songID`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `listSongs`
 --
 DROP TABLE IF EXISTS `listSongs`;
@@ -192,7 +225,7 @@ ALTER TABLE `Alarm`
 -- AUTO_INCREMENT for table `AlarmArea`
 --
 ALTER TABLE `AlarmArea`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `AlarmSong`
