@@ -6,13 +6,17 @@ services:
       context: .
     restart: always
     volumes:
-      - '../web:/var/www/html'
+      - './web:/var/www/html'
       - './php_config/custom_php.ini:/usr/local/etc/php/conf.d/custom.ini'
+      - './php_config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini'
+      - './php_config/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini'
     ports:
       - '80:80'
       - '443:443'
   db:
     image: mysql
+    ports:
+      - '3306:3306'
     volumes:
       - './db_data:/var/lib/mysql'
     restart: always
