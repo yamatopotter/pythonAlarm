@@ -14,9 +14,10 @@ def connectMysql():
     global mycursor
 
     mydb = mysql.connector.connect(
-        host="db",
-        user="root",
-        passwd="12345678",
+        host="192.168.0.199",
+        port="3306",
+        user="alarm",
+        password="12345678",
         database="alarm"
     )
 
