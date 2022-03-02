@@ -3,7 +3,7 @@
 <?php 
     include('mysql.php');
 
-    $sql = "SELECT * FROM `listSongs`";
+    $sql = "SELECT * FROM `listAlarm`";
     $result = mysqli_query($cn, $sql);
 ?>
 
@@ -22,8 +22,8 @@
     <?php
 
     while($row = mysqli_fetch_assoc($result)){
-        $alarmName = $row['alarmName'];
-        $startTime = $row['startTime'];
+        $alarmName = $row['nomeAlarme'];
+        $startTime = $row['horaDoAlarme'];
         $songName = $row['songName'];
         $songTime = $row['songTime'];
         $fadeinTime = $row['fadeinTime'];

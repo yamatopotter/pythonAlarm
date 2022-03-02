@@ -6,11 +6,12 @@
     $alarmName = $_POST['name'];
     $startTime = $_POST['startTime'];
     $songID = $_POST['songID'];
+    $areaID = $_POST['areaID'];
     $songTime = $_POST['songTime'];
     $fadeinTime = $_POST['fadeinTime'];
     $fadeoutTime = $_POST['fadeoutTime'];
     
-    $sql = "INSERT INTO Alarm (name, startTime, userID) VALUES ('$alarmName','$startTime', 1)";
+    $sql = "INSERT INTO Alarm (name, startTime, userID, AlarmeAreaID) VALUES ('$alarmName','$startTime', 1, $areaID)";
     mysqli_query($cn, $sql);
     $alarmID = mysqli_insert_id($cn);
 

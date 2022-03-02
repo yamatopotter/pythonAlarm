@@ -30,6 +30,23 @@
                 }
             ?>
         </select>
+
+        <label for="areaSelector">
+            Selecione a área do alarme
+        </label>
+
+        <select name="areaID" id="areaSelector" class="mb-3">
+            <?php 
+                $sql = "select * from AlarmArea";
+                $result = mysqli_query($cn, $sql);
+
+                while($row = mysqli_fetch_assoc($result)){
+                    $areaID = $row['ID'];
+                    $areaName = $row['Nome'];
+                    echo "<option value='$areaID'>$areaName</option>";
+                }
+            ?>
+        </select>
         
         <label for="songTime">
             Tempo de Execução (segundos)

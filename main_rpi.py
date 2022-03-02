@@ -5,6 +5,10 @@ import RPi.GPIO as gpio
 import mysql.connector
 import datetime
 
+def getTime():
+    horaAux = datetime.datetime.now()
+    return horaAux
+
 def getScriptFolder():
     scriptPath = path.split(path.realpath(__file__))
     return scriptPath[0]
@@ -21,6 +25,7 @@ def disablePins(pin):
 def connectMysql():
     global mydb
     global mycursor
+    time = getTime()
 
     mydb = mysql.connector.connect(
         host="localhost",
@@ -30,7 +35,7 @@ def connectMysql():
     )
 
     if (mysql):
-        print('[INFO] Sucesso na conexão ao banco de dados')
+        print('[INFO] [{time}] Sucesso na conexão ao banco de dados')
         mycursor = mydb.cursor()
 
 mydb = 0
@@ -41,10 +46,12 @@ VIEW_SQL = "SELECT a.name as nomeAlarme, a.startTime as horaDoAlarme, aa.Nome as
 
 connectMysql()
 
-horaAux = datetime.datetime.now()
-hora = horaAux.strftime("%H:%M")
+hora = getTime()
+hora = hora.strftime("%H:%M")
 
 sql = VIEW_SQL + ("horaDoAlarme='{hora}'".format(hora=hora))
+print('[INFO] [{hora}] Realizando pesquisa no banco de dados')
+
 mycursor.execute(sql)
 aux=mycursor.fetchall()
 
@@ -52,6 +59,8 @@ aux=mycursor.fetchall()
 rc = mycursor.rowcount
 
 if (rc>=1):
+    hora = getTime()
+    print('[INFO] [{hora}] Processando dados do alarme')
     nome_alarme = aux[0][0]
     arquivo = aux[0][7] #listar aqui o local do arquivo
     song_time = aux[0][4]*1000 #tempo da música
@@ -61,8 +70,11 @@ if (rc>=1):
     porta = aux[0][3]
 
     pathSong = ROOT_FOLDER + WEB_FOLDER + arquivo
+    hora = getTime()
+    print('[INFO] [{hora}] Preparando música para reprodução')
     song = AudioSegment.from_mp3(pathSong)
-    print("[EXEC] Há um alarme sendo executado agora")
+    hora = getTime()
+    print("[EXEC] [{hora}] Há um alarme sendo executado agora")
     print("""[INFO] Dados do alarme
         Alarm: {nameAlarm}
         Song: {songName}

@@ -5,11 +5,13 @@
         <main>
             <div class="container">
                 <?php
-                    $opMenu = $_GET['op'];
-                    if ($opMenu == null):
+                    if(isset($_GET['op'])){
+                        $opMenu = $_GET['op'];
+                    }else{
                         $opMenu = 0;
-                    endif;
-
+                    }
+                    
+                      
                     switch($opMenu){
                         case 0: 
                             include('intro.php');
