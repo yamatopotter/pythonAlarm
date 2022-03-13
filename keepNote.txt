@@ -1,0 +1,20 @@
+Lembrar de quando montar o servidor com raspberry pi de:
+- Instalar apache2 php mariadb-server php-mysql phpmyadmin vsftpd
+- configurar o apache2.conf para trocar o diretório
+- configurar o sites-enabled 000-default.conf para trocar o diretorio
+- configurar o php.ini para aumentar o upload_max_size post_max_size 40M em ambos
+- configurar o vsftpd.conf com:
+	- anonymous_enabled - no
+	- local_enabled - yes
+	- write-enabled - yes
+	- local_unmask - 022
+	- chroot_local_user - yes
+	- user_sub_token = $USER
+	- local_root = /home/$USER
+- dar chmod a-w no diretorio home de PI se estiver usando ele para o ftp
+- criar o banco de dados e o usuario no mysql CLI
+- configurar o usuario do sistema e as portas em uso do raspberry pi no banco de dados
+- instalar o python3-pip
+- instalar pip pydub
+- instalar pip mysql-connector-python
+- instalar ffmpeg

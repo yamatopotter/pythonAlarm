@@ -4,6 +4,7 @@ from os import path
 import RPi.GPIO as gpio
 import mysql.connector
 import datetime
+import logging
 
 def getTime():
     horaAux = datetime.datetime.now()
@@ -37,6 +38,16 @@ def connectMysql():
     if (mysql):
         print('[INFO] [{time}] Sucesso na conexão ao banco de dados')
         mycursor = mydb.cursor()
+
+def createLog(case):
+    logging.basicConfig(
+    filename='pythonAlarm.log',
+    format='[%(levelname)s] - %(asctime)s - %(message)s',
+    datefmt='%d/%m/%Y %I:%M:%S %p',
+    encoding='utf-8',
+    level=logging.DEBUG
+    )
+
 
 mydb = 0
 mycursor = 0
