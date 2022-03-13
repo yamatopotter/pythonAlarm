@@ -3,7 +3,7 @@
 <?php 
     include('mysql.php');
 
-    $sql = "SELECT * FROM `listAlarm`";
+    $sql = "SELECT a.name as nomeAlarme, a.startTime as horaDoAlarme, aa.Nome as area, aa.GPIO_PORT as porta, also.songTime as tempoMusica, also.fadeinTime as fadeIn, also.fadeoutTime as fadeout, s.path as path FROM Alarm as a INNER JOIN AlarmArea as aa ON aa.ID = a.AlarmeAreaID INNER JOIN AlarmSong as also ON also.alarmID = a.alarmID INNER JOIN Song as s ON s.songID = also.songID";
     $result = mysqli_query($cn, $sql);
 ?>
 
@@ -25,9 +25,9 @@
         $alarmName = $row['nomeAlarme'];
         $startTime = $row['horaDoAlarme'];
         $songName = $row['songName'];
-        $songTime = $row['songTime'];
-        $fadeinTime = $row['fadeinTime'];
-        $fadeoutTime = $row['fadeoutTime'];
+        $songTime = $row['tempoMusica'];
+        $fadeinTime = $row['fadeIn'];
+        $fadeoutTime = $row['fadeout'];
         $alarmID = $row['alarmID'];
 
         echo "<tr><td>$alarmName</td>

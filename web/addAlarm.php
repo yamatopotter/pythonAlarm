@@ -51,7 +51,7 @@
         <label for="songTime">
             Tempo de Execução (segundos)
         </label>
-        <input type="number" name="songTime" min=1 max=120 class="mb-3">
+        <input type="number" name="songTime" min=1 max=300 class="mb-3">
 
         <label for="fadeinTime">
             Fade-In (segundos)
