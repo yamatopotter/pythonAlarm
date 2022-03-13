@@ -11,7 +11,8 @@
                     <li class="nav-item"><a class="nav-link" href="admin.php?op=1">Adicionar música</a></li>
                     <li class="nav-item"><a class="nav-link" href="admin.php?op=2">Remover música</a></li>
                     <li class="nav-item"><a class="nav-link" href="admin.php?op=3">Adicionar alarme</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin.php?op=4">Listar alarmes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.php?op=4">Listar Alarmes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.php?op=5">Listar Áreas</a></li>
                 </ul>
             </div>
         </div>
