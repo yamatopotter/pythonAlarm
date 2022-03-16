@@ -28,7 +28,6 @@ def disablePins(pin):
 def connectMysql():
     global mydb
     global mycursor
-    time = getTime()
 
     mydb = mysql.connector.connect(
         host="localhost",
@@ -65,7 +64,7 @@ ROOT_FOLDER = getScriptFolder()
 #Webfiles folder
 WEB_FOLDER = "/web/"
 #SQL View - I used this method because when I imported the db from docker it broke the view, so I decided to use this. I think it is not elegant but it works.
-VIEW_SQL = "SELECT a.name as nomeAlarme, a.startTime as horaDoAlarme, aa.Nome as area, aa.GPIO_PORT as porta, also.songTime as tempoMusica, also.fadeinTime as fadeIn, also.fadeoutTime as fadeout, s.path as path FROM Alarm as a INNER JOIN AlarmArea as aa ON aa.ID = a.AlarmeAreaID INNER JOIN AlarmSong as also ON also.alarmID = a.alarmID INNER JOIN Song as s ON s.songID = also.songID HAVING "
+VIEW_SQL = "SELECT a.name as nomeAlarme, a.startTime as horaDoAlarme, a.enabled as active aa.Nome as area, aa.GPIO_PORT as porta, also.songTime as tempoMusica, also.fadeinTime as fadeIn, also.fadeoutTime as fadeout, s.path as path FROM Alarm as a INNER JOIN AlarmArea as aa ON aa.ID = a.AlarmeAreaID INNER JOIN AlarmSong as also ON also.alarmID = a.alarmID INNER JOIN Song as s ON s.songID = also.songID HAVING active=1 AND "
 
 # Starting RPi Ports
 gpio.setmode(gpio.BOARD)
