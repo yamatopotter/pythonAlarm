@@ -4,14 +4,14 @@
     include('mysql.php');
 
     $sql = "SELECT 
-    a.name as nomeAlarme, a.startTime as horaDoAlarme, a.alarmID as alarmID,
+    a.name as nomeAlarme, a.startTime as horaDoAlarme, a.alarmID as alarmID, a.enabled as ativo,
     aa.Nome as area, aa.GPIO_PORT as porta,
     also.songTime as tempoMusica, also.fadeinTime as fadeIn, also.fadeoutTime as fadeout,
     s.name as songName, s.path as path
     FROM Alarm as a 
     INNER JOIN AlarmArea as aa ON aa.ID = a.AlarmeAreaID
     INNER JOIN AlarmSong as also ON also.alarmID = a.alarmID
-    INNER JOIN Song as s ON s.songID = also.songID;";
+    INNER JOIN Song as s ON s.songID = also.songID";
     $result = mysqli_query($cn, $sql);
 ?>
 
@@ -23,6 +23,7 @@
         <th scope="col">Tempo de Música</th>
         <th scope="col">Fade In</th>
         <th scope="col">Fade Out</th>
+        <th scope="col">Ativo?</th>
         <th scope="col">Ações</th>
     </tr>
 
@@ -37,14 +38,23 @@
         $fadeinTime = $row['fadeIn'];
         $fadeoutTime = $row['fadeout'];
         $alarmID = $row['alarmID'];
+        $alarmeAtivo = $row['ativo'];
+
+        if($alarmeAtivo){
+            $alarmeAtivo = "Sim";
+        }
+        else{
+            $alarmeAtivo = "Não";
+        }
 
         echo "<tr>
                 <td scope='row'>$alarmName</td>
-                <td >$startTime</td>
+                <td>$startTime</td>
                 <td>$songName</td>
                 <td>$songTime</td>
                 <td>$fadeinTime</td>
                 <td>$fadeoutTime</td>
+                <td>$alarmeAtivo</td>
                 <td>
                     <a href='confirmDeleteAlarm.php?id=$alarmID' class='btn-table'><img src='./assets/img/delete.png' alt='Excluir Alarme'></a>
                     <a href='editAlarm.php?id=$alarmID' class='btn-table'><img src='./assets/img/edit.png' alt='Editar Alarme'></a>
