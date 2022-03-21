@@ -12,6 +12,7 @@ Functions of the system working right now:
     - List alarms
     - Delete songs
     - Create and include alarms.
+    - Edit Alarm
 
 Tools:
     - tool_testAlarm.py - Used to list the alarms and select one to execute and check sound.
@@ -20,7 +21,6 @@ Tools:
     - tool_uploadDebug.html - Used to test if Apache and PHP configuration is working as expected.
 
 Future releases
-    - Edit Alarm
     - Remove Alarm
     - Create users
     - Polish the UI/UX
