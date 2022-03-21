@@ -64,7 +64,7 @@ i=1
 
 if(rc>0):    
     for aux in result:
-        nome_alarme = aux[0]
+        nome_alarme = aux['nomeAlarme']
         arquivo = aux[7] #listar aqui o local do arquivo
         song_time = aux[4]*1000 #tempo da música
         fadein_time = aux[5]*1000
