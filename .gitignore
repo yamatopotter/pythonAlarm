@@ -2,3 +2,4 @@ docker-webserver/db_data/*
 docker-webserver/web/*
 .DS_Store
 web/.DS_Store
+web/songs/*

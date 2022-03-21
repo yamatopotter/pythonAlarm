@@ -24,6 +24,8 @@
 <script>
     window.location.href="http://<?php echo $host; ?>/admin.php";
 </script>
+
+    <h1>Logado com sucesso</h1>
 </body>
 </html>
 
